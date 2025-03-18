@@ -6,8 +6,5 @@ import kotlinx.coroutines.flow.StateFlow
 
 expect class BluetoothManager(){
     fun startScan() : List<BluetoothDevice>
-    fun connect(devicesID: String)
-    fun sendMessage(message: String)
-
-    val messages: StateFlow<List<Message>>
+//    fun connect(devicesID: String)
 }

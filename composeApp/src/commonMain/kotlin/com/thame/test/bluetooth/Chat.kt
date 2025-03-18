@@ -33,8 +33,7 @@ import com.thame.test.navController.Controller
 fun Chat(navController: NavController) {
 
     val bluetoothManager = remember { BluetoothManager() }
-//    val messages = remember { mutableStateListOf<Message>() }
-    val messages by bluetoothManager.messages.collectAsState()
+    val messages = remember { mutableStateListOf<Message>() }
     val messageText = remember { mutableStateOf("") }
 
     Column(
@@ -72,7 +71,6 @@ fun Chat(navController: NavController) {
             Button(
                 onClick = {
                     if (messageText.value.isNotBlank()) {
-                        bluetoothManager.sendMessage(messageText.value)
                         messageText.value = ""
                     }
                 },

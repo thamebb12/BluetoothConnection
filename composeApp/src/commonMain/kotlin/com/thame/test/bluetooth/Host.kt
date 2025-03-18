@@ -93,7 +93,7 @@ fun Host(
                                 .padding(horizontal = 8.dp),
                             elevation = 4.dp,
                             onClick = {
-                                device.identifier?.let { bluetoothManager.connect(it) }
+//                                device.identifier?.let { bluetoothManager.connect(it) }
                                 navController.navigate(Controller.Chat.name)
                             }
                         ) {
