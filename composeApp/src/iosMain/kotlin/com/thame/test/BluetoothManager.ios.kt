@@ -1,10 +1,17 @@
 package com.thame.test
 
 import com.thame.test.data.BluetoothDevice
+import platform.CoreBluetooth.CBAttributePermissionsReadable
+import platform.CoreBluetooth.CBAttributePermissionsWriteable
 import platform.CoreBluetooth.CBCentralManager
 import platform.CoreBluetooth.CBCentralManagerDelegateProtocol
+import platform.CoreBluetooth.CBCharacteristicPropertyNotify
+import platform.CoreBluetooth.CBCharacteristicPropertyWriteWithoutResponse
 import platform.CoreBluetooth.CBManagerStatePoweredOn
+import platform.CoreBluetooth.CBMutableCharacteristic
+import platform.CoreBluetooth.CBMutableService
 import platform.CoreBluetooth.CBPeripheral
+import platform.CoreBluetooth.CBPeripheralManager
 import platform.Foundation.NSNumber
 import platform.darwin.NSObject
 
@@ -57,6 +64,7 @@ actual class BluetoothManager : NSObject(), CBCentralManagerDelegateProtocol {
     ) {
         println("Connected to ${didConnectPeripheral.name ?: "Unknown"}")
     }
+
 }
 
 

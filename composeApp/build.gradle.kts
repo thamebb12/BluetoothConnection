@@ -1,12 +1,14 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.plugin.mpp.NativeBuildType
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.kotlinCocoapods)
 }
 
 kotlin {
@@ -27,7 +29,50 @@ kotlin {
             isStatic = true
         }
     }
-    
+
+//    cocoapods {
+//        version = "1.12.1"
+//        summary = "A shared KMP module for iOS and Android"
+//        homepage = "https://yourhomepage.com"
+//        ios.deploymentTarget = "17.0"
+//        podfile = project.file("../iosApp/Podfile")
+//
+//        framework {
+//            baseName = "composeApp"
+//        }
+//    }
+
+    cocoapods {
+        // Required properties
+        // Specify the required Pod version here
+        // Otherwise, the Gradle project version is used
+        version = "1.0"
+        summary = "Some description for a Kotlin/Native module"
+        homepage = "Link to a Kotlin/Native module homepage"
+
+        // Optional properties
+        // Configure the Pod name here instead of changing the Gradle project name
+        name = "MyCocoaPod"
+        podfile = project.file("../iosApp/Podfile")
+        framework {
+            // Required properties
+            // Framework name configuration. Use this property instead of deprecated 'frameworkName'
+            baseName = "composeApp"
+
+            // Optional properties
+            // Specify the framework linking type. It's dynamic by default.
+            isStatic = false
+            // Dependency export
+            // Uncomment and specify another project module if you have one:
+            // export(project(":<your other KMP module>"))
+            transitiveExport = false // This is default.
+        }
+
+        // Maps custom Xcode configuration to NativeBuildType
+        xcodeConfigurationToNativeBuildType["CUSTOM_DEBUG"] = NativeBuildType.DEBUG
+        xcodeConfigurationToNativeBuildType["CUSTOM_RELEASE"] = NativeBuildType.RELEASE
+    }
+
     sourceSets {
         
         androidMain.dependencies {
@@ -47,6 +92,10 @@ kotlin {
             implementation(libs.kotlinx.serialization.json)
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.navigation.compose)
+        }
+
+        iosMain.dependencies {
+            implementation(kotlin("stdlib"))
         }
     }
 }
