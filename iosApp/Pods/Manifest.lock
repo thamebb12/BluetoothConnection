@@ -1,5 +1,5 @@
 PODS:
-  - MyCocoaPod (1.0)
+  - MyCocoaPod (1.16.2)
 
 DEPENDENCIES:
   - MyCocoaPod (from `../composeApp`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../composeApp"
 
 SPEC CHECKSUMS:
-  MyCocoaPod: 9ff365ff0a2209e1b5a482f1f29e4b1953d5d745
+  MyCocoaPod: 73b0101706888494f16022c762956be093c9c990
 
 PODFILE CHECKSUM: 0f03d011f55bfb23d163e276f51b8f1dcbc66466
 

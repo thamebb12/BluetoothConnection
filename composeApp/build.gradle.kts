@@ -43,34 +43,14 @@ kotlin {
 //    }
 
     cocoapods {
-        // Required properties
-        // Specify the required Pod version here
-        // Otherwise, the Gradle project version is used
-        version = "1.0"
-        summary = "Some description for a Kotlin/Native module"
-        homepage = "Link to a Kotlin/Native module homepage"
-
-        // Optional properties
-        // Configure the Pod name here instead of changing the Gradle project name
-        name = "MyCocoaPod"
+        version = "1.16.2"
+        summary = "Kotlin Multiplatform module"
+        ios.deploymentTarget = "17.0"
         podfile = project.file("../iosApp/Podfile")
         framework {
-            // Required properties
-            // Framework name configuration. Use this property instead of deprecated 'frameworkName'
-            baseName = "composeApp"
-
-            // Optional properties
-            // Specify the framework linking type. It's dynamic by default.
-            isStatic = false
-            // Dependency export
-            // Uncomment and specify another project module if you have one:
-            // export(project(":<your other KMP module>"))
-            transitiveExport = false // This is default.
+            baseName = "ComposeApp"
+            isStatic = true
         }
-
-        // Maps custom Xcode configuration to NativeBuildType
-        xcodeConfigurationToNativeBuildType["CUSTOM_DEBUG"] = NativeBuildType.DEBUG
-        xcodeConfigurationToNativeBuildType["CUSTOM_RELEASE"] = NativeBuildType.RELEASE
     }
 
     sourceSets {
@@ -92,6 +72,7 @@ kotlin {
             implementation(libs.kotlinx.serialization.json)
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.navigation.compose)
+            implementation(libs.kable)
         }
 
         iosMain.dependencies {

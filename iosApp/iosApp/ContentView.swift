@@ -12,8 +12,6 @@ struct ComposeView: UIViewControllerRepresentable {
 
 struct ContentView: View {
     
-    let callIOS = CallIOSImpl()
-    
     var body: some View {
         ComposeView()
                 .ignoresSafeArea(.keyboard) // Compose has own keyboard handler

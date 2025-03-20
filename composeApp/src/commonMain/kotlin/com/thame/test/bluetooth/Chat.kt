@@ -25,14 +25,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.thame.test.BluetoothManager
 import com.thame.test.data.Message
 import com.thame.test.navController.Controller
 
 @Composable
 fun Chat(navController: NavController) {
 
-    val bluetoothManager = remember { BluetoothManager() }
     val messages = remember { mutableStateListOf<Message>() }
     val messageText = remember { mutableStateOf("") }
 
